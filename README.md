@@ -8,4 +8,4 @@ Cacti-SucculentKch: A Booking and Enquiry System
 
 ### Application of Natural Language Processing
 
-Classification of Tweets
+Classification of Twitter Tweets
