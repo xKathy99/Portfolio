@@ -1,5 +1,11 @@
 # Portfolio
 
+### Final Year Project
+- Staircase Recognition
+
+===========================
+
+
 ### Web Applications
 
 - AniMerch: A Product Enquiry and Booking System
