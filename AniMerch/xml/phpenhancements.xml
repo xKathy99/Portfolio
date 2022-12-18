@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+		<meta name="author" content="Jake Chieng"/>
+		<meta name="description" content="Enhancement page for PHP and MySQL"/>
+		<meta name="keywords" content="Enhancement, PHP, MySQL"/>
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>Enhancement for PHP and MySQL</title>
+	</head>
+	
+	<body>
+		
+		<?php include_once("page_header.php");?>
+	
+		<?php include_once("page_menu.php");?>
+		
+		<article class="container">
+			<h1>Enhancement</h1>
+			<section>
+				<h2><a target="_blank" href="view_users.php">User Management Module</a></h2>
+				<p>To allow business owner / operator / web site administrator to manage the website easily, 
+				a separate management website was made. One of the modules included in the website is the user management
+				module that allows only the master account <strong>(username: owner, password: cwaphpsql)</strong> can access.
+				This is to prevent unwanted entry into the module and easier management.</p>
+				<p>In this user management module, more management accounts can be created to access other modules. This simplify
+				user management as accounts can only be made by the master account. There is a list of user accounts in this module too.
+				Changing password and deleting accounts are also possible in this module.
+				To access the user management module (and also other management modules), the user needs to be logged in via the login page.
+				This management module is <em>especially made for authorized personnels only</em>, so public users should not be able to access.</p>
+				<p>For the implementation, a userTable is created to store accounts information such as username, password and privilege.
+				Then, the master account information is stored inside it. The login system and the editing, creating and deleting use 
+				the prepare statements in the query. To check the password, password_verify is used. The password stored is also 
+				encrypted with hashed. Authentication is basically referring to userTable to check whether the username exists and whether
+				the password matches. All the management modules, without login is unaccessible as log in status is checked. As long as
+				the account is logged out via log out page, public user should not be able to access to these modules.</p>
+				<p>Pages for this enhancement:</p>
+				<ul>
+					<li><p><a target="_blank" href="login_php">Login Page</a></p></li>
+					<li><p><a target="_blank" href="edit_user.php">Edit User</a></p></li>
+					<li><p><a target="_blank" href="create_user.php">Create User</a></p></li>
+					<li><p><a target="_blank" href="edit_user.php">Edit User - Changing Password</a></p></li>
+					<li><p><a target="_blank" href="delete_user.php">Delete User</a></p></li>
+					<li><p><a target="_blank" href="delete_enquiry.php">Delete Enquiry</a></p></li>
+				</ul>
+				<p>References:</p>
+				<ul>
+					<li><p><a target="_blank" href="https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php">PHP MySQL Login System</a></p></li>
+					<li><p><a target="_blank" href="https://www.php.net/manual/en/function.password-verify.php">password_verify</a></p></li>
+					<li><p><a target="_blank" href="https://www.w3schools.com/php/php_mysql_select.asp">PHP MySQL Select Data</a></p></li>
+				</ul>
+			</section>
+			
+			<section>
+				<h2><a target="_blank" href="view_products.php">Product Management Module</a></h2>
+				<p>The other management module included is the product management module. This module can be accessed by accounts created, unlike the user module.
+				From this module, products displayed can be viewed, created, edited or deleted as needed. However, only description, status and price can be
+				edited. The product pages also retrieved information from the table to display to public users.</p>
+				<p>To implement this module, a productTable is created in the database from the server to store the product information. In product pages, 
+				the data is retrieved as needed to display. PHP MySQL is useful to retrieve, store and remove information for easier management.</p>
+				<p>Pages for this enhancement:</p>
+				<ul>
+					<li><p><a target="_blank" href="login_php">Login Page</a></p></li>
+					<li><p><a target="_blank" href="edit_product.php">Edit Product</a></p></li>
+					<li><p><a target="_blank" href="create_product.php">Create New Product</a></p></li>
+					<li><p><a target="_blank" href="delete_product.php">Delete Product</a></p></li>
+				</ul>
+				<p>References:</p>
+				<ul>
+					<li><p><a target="_blank" href="https://www.w3schools.com/php/php_mysql_select.asp">PHP MySQL Select Data</a></p></li>
+				</ul>
+			</section>
+		</article>
+		
+		<?php include_once("page_footer.php");?>
+		
+	</body>
+</html>

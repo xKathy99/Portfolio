@@ -1,0 +1,125 @@
+body {
+  background-image: url('background.jpg');
+  font-size: 15px;
+  font-family: Georgia, serif;
+  margin: 2%;  
+  color: #2a1701;
+}
+
+section 
+{ 
+	/* background-color: #9f0d0d; */
+	position: relative;
+	width: 100%;
+}
+
+.div_container
+{
+	width: 60%;
+	margin: 5% 20%;
+	height: 95%;
+}
+
+
+.div_left, .div_right
+{
+    width: 46%;
+	height: auto;
+	margin: 2%;
+	min-height: 100px;
+	
+	display: grid;
+	place-items: center;
+}
+
+
+.div_left
+{
+	/*background-color: red;*/
+	float: left;
+}
+
+.div_right
+{
+	/*background-color: blue;*/
+	float: right;
+}
+
+
+.div_each_enquiry, .div_equiry_form, .div_each_reply, .div_reply_enquiry
+{
+	/*background-color: green;*/
+	width: 70%;
+	height: auto;
+	margin: 2% 10%;
+	border: 3px solid #404040;
+	position: relative;
+	padding: 2%;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=tel], input[type=time], input[type=radio], input[type=number], input[type=date], textarea
+{
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=tel], input[type=number], input[type=date], textarea
+{
+	width: 100%;
+}
+
+textarea
+{
+	resize: vertical;
+}
+
+input[type=time]
+{	
+	width: 30%;
+}
+
+
+/* Set a style for all buttons */
+button
+{
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: auto;
+
+}
+
+.div_button
+{
+	text-align: right;
+}
+
+.button_green
+{
+	background-color: #4f7b68;
+}
+
+.button_red
+{
+  background-color: #f44336;
+}
+
+/* Add a hover effect for buttons */
+.button_red:hover, .button_green:hover
+{
+  opacity: 0.8;
+}
+
+.article_enquiry
+{
+	border: 3px solid #404040; 
+	Padding: 10%;
+	border-radius: 25px;
+	background-color: #919191;
+	opacity: 0.8;
+}

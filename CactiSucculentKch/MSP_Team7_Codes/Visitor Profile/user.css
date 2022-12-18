@@ -1,0 +1,100 @@
+html {
+  scroll-behavior: smooth;
+}
+/* Bordered form */
+form {
+  /* border: 3px solid #404040; */
+  Margin: auto;
+  width: 35%;
+  border-radius: 25px;
+  background-color: #919191;
+  opacity: 0.8;
+}
+form.containeruser{
+  width: 70%;
+}
+body {
+  background-image: url('background.jpg');
+  background-attachment: fixed;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  margin: 2%;  
+  margin-top: 160px;
+  color: #2a1701;
+  display: block;
+}
+h1.centertitle{
+  text-align: center;
+  color:white;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=email], input[type=tel] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 3px solid #2F5233;
+  border-radius: 10px;
+  font-family: Georgia, serif;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  border-radius: 5px;
+}
+
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.5;
+}
+
+.centerbtn{
+  width:50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.containeruser {
+  font-size: 130%;
+  padding: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 50px;
+  border-radius: 10px;
+  opacity: 0.8;
+  line-height: 1.5;
+  text-align: left;
+
+}
+
+.containeruser table th td {
+  font-size: 130%;
+  padding: 50px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  background-color: #919191;
+  opacity: 0.8;
+
+  
+}
+
+.custom td{
+  text-decoration: underline;
+  color: white;
+}

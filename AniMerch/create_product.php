@@ -1,0 +1,257 @@
+<?php
+	// Initialize the session
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect him to login page
+	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+	{
+		header("location: login.php");
+		exit;
+	}
+	
+	require_once "settings.php";
+	
+	$conn = @mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	
+	$product_id = $product_name = $source = $sourcelink = "";
+	$description = $status = $price = $category = $imagelink = "";
+	$id_err = $name_err = $source_err = $link_err = $des_err = "";
+	$status_err = $price_err = $cat_err = $image_err = "";
+	
+	if ($_SERVER["REQUEST_METHOD"] == "POST")
+	{
+		if (empty(trim($_POST["product_id"])))
+		{
+			$id_err = "Please enter a product ID.";
+		}
+		else
+		{
+			$query = "SELECT id FROM productTable WHERE id = ?";
+			
+			if ($stmt = mysqli_prepare($conn, $query))
+			{
+				mysqli_stmt_bind_param($stmt, "s", $param_id);
+				
+				$param_id = trim($_POST["product_id"]);
+				
+				if (mysqli_stmt_execute($stmt))
+				{
+					mysqli_stmt_store_result($stmt);
+					
+					if (mysqli_stmt_num_rows($stmt) == 1)
+					{
+						$id_err = "This product ID is already taken.";
+					}
+					else
+					{
+						$product_id = trim($_POST["product_id"]);
+					}
+				}
+				else
+				{
+					echo "Oops! Something went wrong. Please try again later.";
+				}
+				
+				mysqli_stmt_close($stmt);
+			}
+		}
+		if (empty(trim($_POST["product_name"])))
+		{
+			$name_err = "Please enter product name.";
+		}
+		else
+		{
+			$product_name = (trim($_POST["product_name"]));
+		}
+	
+		if (empty(trim($_POST["source"])))
+		{
+			$source_err = "Please enter source name.";
+		}
+		else
+		{
+			$source = (trim($_POST["source"]));
+		}
+	
+		if (empty(trim($_POST["source_link"])))
+		{
+			$link_err = "Please enter source URL.";
+		}
+		else
+		{
+			$sourcelink = (trim($_POST["source_link"]));
+		}
+	
+		if (empty(trim($_POST["product_descr"])))
+		{
+			$des_err = "Please enter product description.";
+		}
+		else
+		{
+			$description = (trim($_POST["product_descr"]));
+		}
+	
+		if (empty(trim($_POST["product_status"])))
+		{
+			$status_err = "Please enter product status.";
+		}
+		else
+		{
+			$status = (trim($_POST["product_status"]));
+		}
+	
+		if (empty(trim($_POST["product_price"])))
+		{
+			$price_err = "Please enter product price.";
+		}
+		else
+		{
+			$price = (trim($_POST["product_price"]));
+		}	
+	
+		if (empty(trim($_POST["category"])))
+		{
+			$cat_err = "Please choose product category.";
+		}
+		else
+		{
+			$category = (trim($_POST["category"]));
+		}
+	
+		if (empty(trim($_POST["product_image"])))
+		{
+			$image_err = "Please enter product image link.";
+		}
+		else
+		{
+			$imagelink = (trim($_POST["product_image"]));
+		}
+		
+		if (empty($id_err) && empty($name_err) && empty($source_err) && empty($link_err)
+		&& empty($des_err) && empty($status_err) && empty($price_err) && empty($cat_err)
+		&& empty($image_err))
+		{
+			$query = "INSERT INTO productTable (id, productname, source, 
+			sourcelink, description, status, price, category, imagelink)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"	;
+		
+			if ($stmt = mysqli_prepare($conn, $query))
+			{
+				mysqli_stmt_bind_param($stmt, "sssssssis", 
+				$param_id, $param_name, $param_source, $param_link, 
+				$param_desc, $param_status, $param_price, $param_category,
+				$param_image);
+			
+				$param_id = $product_id;
+				$param_name = $product_name;
+				$param_source = $source;
+				$param_link = $sourcelink;
+				$param_desc = $description;
+				$param_status = $status;
+				$param_price = $price;
+				$param_category = $category;
+				$param_image = $imagelink;
+				if (mysqli_stmt_execute($stmt))
+				{
+					header("location: view_products.php");
+				}
+				else
+				{
+					echo "Something went wrong. Please try again later.";
+				}
+				
+				mysqli_stmt_close($stmt);
+			}
+		}
+	}
+	
+	mysqli_close($conn);
+?>
+
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/CSS" href="styles/style.css">
+		<meta name="author" content="Jake Chieng">
+		<meta name="description" content="Create Product">
+		<meta name="keywords" content="Product Management, Create">
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>Product Management - Create</title>
+	</head>
+	
+	<body class="manageBody">
+		<?php include_once "management_header_nav.php"; ?> 
+		<article class="manageContainer">
+			<h1>Create Product</h1>
+			<form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+				<div class="formElement">
+					<label for="product_id">PRODUCT ID</label>
+					<input type="text" id="product_id" name="product_id" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $id_err; ?></span> 
+				</div>
+				
+				<div class="formElement">
+					<label for="product_name">PRODUCT NAME</label>
+					<input type="text" id="product_name" name="product_name" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $name_err; ?></span>
+				</div>
+				
+				<div class="formElement">
+					<label for="source">SOURCE</label>
+					<input type="text" id="source" name="source" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $source_err; ?></span>
+				</div>
+				
+				<div class="formElement">
+					<label for="source_link">SOURCE LINK</label>
+					<input type="text" id="source_link" name="source_link" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $link_err; ?></span>
+				</div>
+				
+				<div class="formElement">
+					<label for="product_descr">PRODUCT DESCRIPTION</label>
+					<br>
+					<textarea name="product_descr" id="product_descr"></textarea>
+					<span><?echo $des_err; ?></span>
+				</div>
+				
+				<div class="formElement formSide">
+					<label for="product_status">STATUS</label>
+					<input type="text" id="product_status" name="product_status" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $status_err; ?></span>
+				</div>
+				
+				<div class="formElement formSide formRight">
+					<label for="product_price">PRICE</label>
+					<input type="text" id="product_price" name="product_price" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $price_err; ?></span>
+				</div>
+				
+				<div class="formElement">
+					<label for="category">PRODUCT CATEGORY</label>
+					<select id="category" name="category" onfocus="selectFocus(this)">
+						<option value="none">Select Category</option>
+						<option value="1">Fate/Stay Night: Heaven's Feel Collaboration</option>
+						<option value="2">Nendoroids</option>
+						<option value="3">Model Kits</option>
+						<option value="4">Seasonal Special Limited Items</option>
+					</select>
+					<span><?echo $cat_err; ?></span>
+				</div>
+				
+				<div class="formElement">
+					<label for="product_image">PRODUCT IMAGE LINK</label>
+					<input type="text" id="product_image" name="product_image" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?echo $image_err; ?></span>
+				</div>
+				
+				<input type="reset" value="Reset">
+				<input type="submit" value="Create Product">
+			</form>
+		</article>
+		<?php include_once "management_footer.php"?>
+	</body>
+</html>

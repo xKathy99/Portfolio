@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/CSS" href="styles/style.css">
+		<meta name="author" content="Jake Chieng">
+		<meta name="description" content="Disclaimer page">
+		<meta name="keywords" content="Assignment, Disclaimer">
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>Disclaimer</title>
+	</head>
+	
+	<body>
+	
+		<?php include_once("page_header.php");?>
+	
+		<?php include_once("page_menu.php");?>
+		
+		<article id="disclaimer">
+			<h1>Disclaimer</h1>
+			<ul>
+				<li><em>This</em> website is created mainly for educational and non-commercial use
+				only. It is a partial fulfilment for completion of unit COS10011 - Creating Web 
+				Application offered in Swinburne University of Technology, Sarawak Campus for 
+				Semester 1, 2020.</li>
+				<li>The web-master and author(s) do not represent the business entity.</li>
+				<li>Then content of the pages of ths website might be out-dated or inaccurate,
+				thus, the author(s) and web-master does not take any responsibility for incorrect 
+				information disseminate or cited from this website.</li>
+				<li>If you believe that information of any kind on this website is an infringement 
+				of copyright in material in which you either own copyright or are authorized to 
+				exercise the rights of a copyright owner, kindly contact the web-master 
+				(<a href="mailto:100083551@students.swinburne.edu.my">
+				100083551@students.swinburne.edu.my</a>) for removal.</li>
+			</ul>
+		</article>
+		
+		<?php include_once("page_footer.php");?>
+		
+	</body>
+
+</html>

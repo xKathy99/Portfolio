@@ -1,0 +1,82 @@
+<?php
+	// Initialize the session
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect to login page
+	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+	{
+		header("location: login.php");
+		exit;
+	}
+	
+	if ($_SESSION["privilege"] != "1")
+	{
+		$message = "This account is not authorized to access this module.";
+		echo "<script type='text/javascript'>alert('$message'); window.location.href='view_enquiries.php'; </script>";
+		exit;
+	}
+	
+?>
+
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/CSS" href="styles/style.css"/>
+		<meta name="author" content="Jake Chieng"/>
+		<meta name="description" content="View User"/>
+		<meta name="keywords" content="User Management, View"/>
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>User Management - View</title>
+	</head>
+	
+	<body class="manageBody">
+		<?php include_once "management_header_nav.php"; ?> 
+	
+		<article class="manageContainer">
+			<h1>User Table</h1>
+			<?php
+				require_once "settings.php";
+				
+				// Create connection
+				$conn = @mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+				
+				if ($conn)
+				{
+					$query = "SELECT * FROM userTable";
+					$result = mysqli_query($conn, $query);
+				
+					if ($result->num_rows > 0)
+					{
+						echo "<table>";
+						echo "<tr><th>ID</th>";
+						echo "<th>Username</th>";
+						echo "<th>Password</th>";
+						echo "<th>Privilege Level</th></tr>";
+					
+						while ($row = $result->fetch_assoc())
+						{
+							echo "<tr><td>" . $row["id"] . "</td><td>" .
+							$row["username"] . "</td><td>" . 
+							$row["password"] . "</td><td>" . 
+							$row["privilege"] . "</td></tr>";						
+						}
+						echo "</table>";
+					}
+					else
+					{
+						echo "0 results";
+					}
+					mysqli_close($conn);
+				}
+				else
+				{
+					echo "Unable to connect to the database.";
+				}
+			?>
+		</article>
+		<?php include_once "management_footer.php"; ?> 
+	</body>
+</html>

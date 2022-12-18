@@ -1,0 +1,91 @@
+<?php
+	// Initialize the session
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect him to login page
+	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+	{
+		header("location: login.php");
+		exit;
+	}
+
+	// require_once "database.php";
+	
+	// createDB();
+	// createProductTable();
+	// defaultProductTable();
+
+?>
+
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/CSS" href="styles/style.css">
+		<meta name="author" content="Jake Chieng">
+		<meta name="description" content="View Products">
+		<meta name="keywords" content="Product Management, View">
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>Product Management</title>
+	</head>
+	
+	<body class="manageBody">
+		<?php include_once "management_header_nav.php"; ?> 
+	
+		<article class="manageContainer">
+			<h1>List of Product</h1>
+			<?php
+				require_once "settings.php";
+				
+				// Create connection
+				$conn = @mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+				
+				if ($conn)
+				{
+					$query = "SELECT * FROM productTable";
+					$result = mysqli_query($conn, $query);
+				
+					if ($result && $result->num_rows > 0)
+					{
+						echo "<table>";
+						echo "<tr><th>Product ID</th>";
+						echo "<th>Product Name</th>";
+						echo "<th>Source</th>";
+						echo "<th>Description</th>";
+						echo "<th>Status</th>";
+						echo "<th>Price</th>";
+						echo "<th>Category</th>";
+						echo "<th>Image Link</th></tr>";
+					
+						while ($row = $result->fetch_assoc())
+						{
+							echo "<tr><td>" . $row["id"] . "</td><td>" .
+							$row["productname"] . "</td><td><a target=\"_blank\" href=\"" .
+							$row["sourcelink"] . "\">" . 
+							$row["source"] . "</a></td><td>" .  
+							$row["description"] . "</td><td>" . 
+							$row["status"] . "</td><td>" . 
+							$row["price"] . "</td><td>" .
+							$row["category"] . "</td><td><a target=\"_blank\" href=\"" . 
+							$row["imagelink"] . "\">" . 
+							$row["imagelink"] . "</a></td></tr>";						
+						}
+						echo "</table>";
+					}
+					else
+					{
+						echo "0 results";
+					}
+					mysqli_close($conn);
+				}
+				else
+				{
+					echo "Unable to connect to the database.";
+				}
+			?> 
+		</article>
+		<?php include_once "management_footer.php"; ?> 
+	</body>
+</html>

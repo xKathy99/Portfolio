@@ -1,0 +1,756 @@
+* {
+	font-family: arial, sans-serif;
+	line-height: 1.5;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #f7941d;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+}
+
+/* HEADER, Author: Kathy Wong, ID 101212259 */
+header { 
+	position: relative;
+	overflow: hidden;
+	background-color: white;
+	padding: 10px;
+	height: 100px;
+} /* The header's position is relative and any overflow will not be shown. 
+		Its height is fixed at 100px */
+
+.logo_disp_img {	
+	display: block;
+	width: 20%;
+	float: left;
+} /* This is to set the company logo image size at 20% of its original width. The height is automated-
+				it will be a ratio of the original image's dimensions when the width is at 20%. It is displayed
+				as a block, like how as paragraphs are. This makes the logo to be aligned with the header. */
+
+#top_h1 { /* this denotes the styles for the heading1 (Welcome to animerch) in the header */
+	font-weight: bold;
+	float: left;
+	width: 40%;
+	font-size: 48px;
+	margin-left: 15px;
+	padding: 10px;
+}
+
+.search_bar { /*The top and bottom paddings for the search bar are
+				20px while the left and right are not padded*/
+	padding: 20px 0px;
+	text-align: center;
+	float: right;
+	width: 20%;
+}
+
+#search_bar_label {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#search_input { /*The text field for the search bar is made to have a width of 60%*/
+	width: 60%;
+	padding: 1px;
+	border: 1px solid black;
+	font-size: 15px;
+}
+
+/* NAVIGATION, Author: Kathy Wong 101212259*/
+
+nav {
+	background-color: #f26522; /*pumpkin brown*/
+	text-align: center;
+	clear: both; /*This clears the navigation from the formatting of the header */
+} 
+
+nav li 
+{
+	display: inline;
+}
+
+.navButton {
+  background-color: #f26522;
+  background: transparent;
+  font-size: 18px;
+  color: white;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  min-width: 200px;
+  min-height: 20px;
+}
+
+.navButton:hover, .navButton:focus {
+  background-color: #f7941d;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropContent {
+  display: none;
+  position: absolute;
+  background-color: #f26522;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropContent a {
+  font-size: 18px;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #f7941d;}
+
+#navmenu a.current {
+  font-size: 18px;
+  color: white;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  min-width: 200px;
+  min-height: 20px;
+  background-color: #f7941d;
+}
+
+.show {display: block;}
+
+/* FOOTER, Author: Kathy Wong 101212259 */
+
+footer {
+	overflow: hidden; /* This hides any overflow */
+	background-color: #f26522; /*pumpkin brown*/
+	position: relative; /* The footer position is relative to items in the page*/
+	clear: both;  /* So the part of the div will be cleared from the Section's and/or Article formatting */
+}
+
+
+#foot_div_contact { /*This is the div with the id #foot_div_contact
+					that will appear on the right side of the footer.
+					It takes 40% space of the footer and has 10px padding*/
+	position: absolute;
+	right: 0;
+	float: right;
+	color: white;
+	text-align: left;
+	padding: 10px;
+	width: 40%;
+}	
+
+#foot_div_contact a {
+	color: white;
+}/* For all links in the div with the id #foot_div_contact to be white in colour*/
+  
+#foot_div_about { /* This div is placed absolutely close to the top
+					and floated to the left of the footer. All text is justified  */
+	top: 0;
+	float: left;
+	color: white;
+	text-align: justify;
+	height: auto;
+	padding: 10px;
+	width: 55%;
+}
+
+#foot_div_about q {
+	font-style: italic;
+}/* This is to italicise the quote in the footer*/
+
+
+#foot_div_link a {/* For all links in the div with the id #foot_div_link, which are Disclaimer and Return to Top*/
+	font-size: 18px;
+	color: white;
+	float: right;
+	text-decoration: none;
+	padding: 16px;
+}
+
+
+#foot_div_link a:hover {
+	background-color: #f7941d; /*carrot orange*/
+}
+
+#foot_div_link {/* For the div with the id #foot_div_link */
+	position: absolute;
+	float: right;
+	bottom: 0;
+	right: 0;/*Bottom: 0, right: 0- this is to ensure the div is absolutely at the very bottom, and at the very right of the footer */
+	padding: 16px 0px 0px 16px; /* Padding 16px for only top and left; padding order: top, right, bottom, left*/
+	width: 45%;
+}
+
+/*HOMEPAGE, Author: Raymond Ngo and Jake Chieng*/
+#FSNHF {
+	color: black;
+	font-weight: bold;
+	width: 60%;
+	margin: auto;
+	text-align: center;
+	padding: 5px;
+}
+
+iframe {
+	height: 315px;
+	width: 560px;
+	border: none;
+}
+
+.collection{
+	font-size: 50px;
+	font-family: "Gill Sans MT", sans-serif;
+	text-align: center;
+	text-decoration: underline;
+	color: white;
+}
+
+.collection_img .box {
+	display:inline-block;
+}
+
+.collection_merch {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.collection_img {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.box {
+	position: relative;
+	width: 20%;
+	margin: 0;
+	padding: 0;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: black;
+}
+
+.text a{
+  display: block;
+  border: 1px solid white;
+  padding: 10px 20px;
+  color: white;
+  text-decoration:none;
+  font-size: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.box:hover .cover{
+  opacity: 0.5;
+}
+
+.text a:hover{
+  background-color: white;
+  color: black;
+  opacity: 1;
+}
+
+.bannerContainer {
+	width: 90%;
+	margin: auto;
+	margin-top: 15px;
+	text-align: center;
+}
+
+.banner {
+	width: 100%;
+}
+
+/*********** v NEW ELEMENT v ***********/
+/* Slideshow, Author: Raymond Ngo */
+.s_img{
+	width: 100%;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.dotorder {
+	text-align: center;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+/*********** ^ NEW ELEMENT ^ ***********/
+
+/*PRODUCT PAGE, Author: Raymond Ngo and Jake Chieng*/
+.product {
+	font-size: 30px;
+	font-family: "Gill Sans MT", sans-serif;
+	text-align: center;
+	text-decoration: underline;
+	color: black;
+}
+
+.productContainer {
+	background-color: white;
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid black;
+	overflow: hidden;
+	padding: 0px;
+}
+
+.productTable {
+	width: 100%;
+	height: 250px;
+	border: 2px solid black;
+	margin: 0px;
+}
+
+.productImage {
+	display: table-cell;
+	height: 250px;
+	float: left;
+	padding: 5px;
+	width: 25%;
+	text-align: center;
+}
+
+.productImage a img:hover {
+	opacity: 0.5;
+	border: 2px solid black;
+}
+
+.productImage img {
+	max-height: 95%;
+	max-width: 95%;
+}
+
+.description {
+	display: table-cell;
+	float: left;
+	width: 60%;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	color: black;
+	text-align: justify;
+	padding: 10px;
+	margin: 0px;
+}
+
+.productName {
+	font-size: 22px;
+	padding: 5px;
+	margin: 0px;
+	font-family: "Gill Sans MT", sans-serif;
+	color: #f26522;
+}
+
+.productSource {
+	margin: 0px;
+	font-size: 12px;
+}
+
+.details {
+	display: table-cell;
+	float: right;
+	text-align: center;
+	vertical-align: center;
+	width: 15%;
+}
+
+.price {
+	padding: 5px;
+	font-size: 18px;
+}
+
+.formButton {
+	text-align: center;
+	vertical-align: center;
+}
+
+.submitButton {
+	background-color: black;
+	border: none;
+	color: white;
+	padding: 0px 15px;
+	margin-left: 3%;
+	margin-right: 3%;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	font-family: "Gill Sans MT", sans-serif;
+	font-weight: 250;
+}
+
+.submitButton:hover {
+	background-color: #f7941d;
+}
+
+/*PROFILE PAGES, Author: Natasya and Kathy Wong 101212259*/
+
+.page_cont {
+	background-color: #f7941d;
+	float:left;
+	margin:auto;
+	width:auto;
+}
+
+.profileContainer {
+	font-family: Arial;
+    text-align: center;
+	width: 70%;
+	float: left;
+	padding: 15px;
+	background-color: white;
+	border: 3px solid black;
+
+}
+
+.profileImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 20px groove;
+	max-width: 30%;
+}
+
+.name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 200%;
+}
+
+p.course {
+    color: rgb(247,148,29);
+}
+
+.profileTable, .profileTable td, .profileTable th {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.profileTable {
+	margin: auto;
+    border-collapse: collapse;
+    width: 70%;
+}
+
+.profileTable th, .profileTable td {
+    padding: 15px;
+}
+
+.profileTable th {
+    background-color: #F7941D;
+}
+
+.profileTable td {
+    background-color: #FC8040;
+}
+
+.profileFooter {
+    text-align: center;
+}
+
+
+aside.about_me {
+	float: right;
+	width: 30%;
+	padding: 20px;
+}
+
+
+/*Responsive Google Map, Author: Kathy Wong 101212259 */
+/* This is for the Responsive Google Map in the Aside of the About Me page */
+
+/*The Google Maps is embedded in the About Me page in the iframe(inline frame)*/
+.google_map iframe {
+    height: 100%; /* This is to ensure the iframe height and width will fill 100% of of the div of class .google_map */
+    width: 100%;
+    position: absolute; /*position: absolute- So that the map will move along with page scrolling*/
+}
+
+
+div.google_map { /* The div width for the google map will be automated when height is set to 300px*/
+	height: 300px; 
+	width: auto;
+	border-style: none;
+    overflow: hidden;
+    padding-bottom: 50%; /*This is the aspect ratio*/
+    position: relative; /* The div position is relative to items in the page*/
+}
+
+/*ENQUIRY PAGE, Author: Jake Chieng*/
+
+input {
+	width: 100%;
+	padding: 12px 20px;
+	border: none;
+	outline: none;
+	font-size: 20px;
+}
+
+input[type=submit], input[type=reset], input[type=button] {
+	float: left;
+	width: calc((100% - 30px) / 2);
+	border-radius: 25px;
+	margin-bottom: 20px;
+}
+
+input[type=submit] {
+	margin-left: 30px;
+}
+
+input[type=submit]:hover , input[type=reset]:hover , input[type=button]:hover {
+	background-color:#f7941d;
+}
+
+select {
+	width: 100%;
+	padding: 16px 20px;
+	border: none;
+	outline: none;
+	font-size: 20px;
+}
+
+option {
+	font-size: 20px;
+}
+
+textarea {
+	width: 100%;
+	height: 150px;
+	padding: 12px 20px;
+	outline: none;
+	border: none;
+	resize: none;
+}
+
+label {
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.container {
+	background-color: white;
+	width: 50%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 3px solid black;
+	border-radius: 13px;
+	overflow: hidden;
+}
+
+.formElement {
+	float: left;
+	width: 100%;
+	padding: 10px 30px 9px 22px;
+	border: 1px solid black;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border-radius: 13px;
+	text-align: left;
+}
+
+.formElement label {
+	font-size: 12px;
+}
+
+.formElement textarea:focus {
+	border: 2px solid black;
+	border-radius: 13px;
+}
+
+.fieldset {
+	margin-bottom: 20px;
+}
+
+.formSide {
+	width: calc((100% - 30px) / 2);
+}
+
+.formRight {
+	margin-left: 30px;
+}
+
+/*Disclaimer Page, Author: Jake Chieng*/
+#disclaimer {
+	padding: 20px;
+	background-color: white;
+	margin: auto;
+	width: 50%;
+	border: 3px solid black;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/* enquiry_process.php */
+#processForm {
+	padding: 20px;
+	margin: 0px;
+}
+
+#processForm strong {
+	color: #fc8040;
+}
+/*Enquiry button*/
+
+.enquiryButton {
+	text-align: center;
+	vertical-align: center;
+	padding: 20px;
+}
+
+/* Enquiry Submission Table */
+#confirmTable, #confirmTable td, #confirmTable th {
+	padding: 10px;
+	border: 1px solid black;
+}
+
+#confirmTable {
+	margin: auto;
+	width: 80%;
+	border-collapse: collapse;
+}
+
+.container h2 {
+	text-align: center;
+	font-size: 20px;
+	width: 80%;
+	margin: auto;
+	padding: 10px;
+}
+
+#returnHome {
+	border-radius: 25px;
+	width: 100%;
+	padding: 12px 20px;
+	border: none;
+	outline: none;
+	font-size: 20px;
+	margin: 20px 0px;
+}
+
+#returnHome:hover {
+	background-color:#f7941d;
+	cursor: pointer;
+}
+
+/* Management, Author: Jake Chieng */
+.manageBody {
+	text-align: center;
+}
+
+.manageContainer {
+	background-color: white;
+	display: inline-block;
+	max-width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 3px solid black;
+	border-radius: 13px;
+	overflow-x: auto;
+}
+
+.manageContainer table, th, td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.manageContainer table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	margin: auto;
+}
+
+.manageContainer th, td {
+	padding: 10px;
+}

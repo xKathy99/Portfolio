@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/CSS" href="styles/style.css">
+		<meta name="author" content="Jake Chieng">
+		<meta name="description" content="Enquiry Preview">
+		<meta name="keywords" content="Enquiry, Preview">
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>Enquiry Preview</title>
+	</head>
+	
+	<body onload="getEnquiry()">
+		<?php include_once("page_header.php");?>
+	
+		<?php include_once("page_menu.php");?>
+		
+		<article class="container">
+			<?php
+				
+				$fname = $lname = $email = $subject = $address = $city = $state =
+				$postcode = $phonenum = $product = $comment = "";
+				
+				$fnameErr = $lnameErr = $emailErr = $subjectErr = $addressErr = 
+				$cityErr = $stateErr = $postcodeErr = $phonenumErr = $productErr  = "";
+				if ($_SERVER["REQUEST_METHOD"] == "POST")
+				{
+					if (empty($_POST["firstName"]))
+					{
+						$fnameErr = "First name is required.";
+					}
+					else
+					{
+						$fname = test_input($_POST["firstName"]);
+						if (!preg_match("/[a-zA-Z]*$/", $fname))
+						{
+							$fnameErr = "Please enter a valid first name.";
+						}
+						
+						if (strlen($fname) > 25)
+						{
+							$fnameErr = "Your first name should contain less than 25 characters.";
+						}
+					}
+					
+					if (empty($_POST["lastName"]))
+					{
+						$lnameErr = "Last name is required.";
+					}
+					else
+					{
+						$lname = test_input($_POST["lastName"]);
+						if (!preg_match("/[a-zA-Z]/", $lname))
+						{
+							$lnameErr = "Please enter a valid last name.";
+						}
+						
+						if (strlen($lname) > 25)
+						{
+							$lnameErr = "Your last name should contain less than 25 characters.";
+						}
+					}
+					
+					if (empty($_POST["email"]))
+					{
+						$emailErr = "Email is required.";
+					}
+					else
+					{
+						$email = test_input($_POST["email"]);
+						if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+						{
+							$emailErr = "Invalid email format";
+						}
+					}
+					
+					if (empty($_POST["subject"]))
+					{
+						$subjectErr = "Subject is required.";
+					}
+					else
+					{
+						$subject = test_input($_POST["subject"]);
+					}
+
+					if (empty($_POST["streetAddress"]))
+					{
+						$addressErr = "Street address is required.";
+					}
+					else
+					{
+						$address = test_input($_POST["streetAddress"]);
+						if (strlen($address) > 40)
+						{
+							$addressErr = "Your street address should contain less than 40 characters.";
+						}
+					}
+					
+					if (empty($_POST["cityTown"]))
+					{
+						$cityErr = "Street address is required.";
+					}
+					else
+					{
+						$city = test_input($_POST["cityTown"]);
+						if (strlen($city) > 20)
+						{
+							$cityErr = "Your city/town should contain less than 20 characters.";
+						}
+					}
+					
+					if ($_POST["state"] == "none")
+					{
+						$stateErr = "Please select a state.";
+					}
+					else
+					{
+						$state = test_input($_POST["state"]);
+					}
+					
+					if (empty($_POST["postcode"]))
+					{
+						$postcodeErr = "Postcode is required.";
+					}
+					else
+					{
+						$postcode = test_input($_POST["postcode"]);
+						if (!preg_match("/[0-9]{5}/", $postcode))
+						{
+							$postcodeErr = "Please enter a valid postcode.";
+						}
+					}
+					
+					if (empty($_POST["phoneNumber"]))
+					{
+						$postcodeErr = "Phone number is required.";
+					}
+					else
+					{
+						$phonenum = test_input($_POST["phoneNumber"]);
+						if (!preg_match("/[0-9]/", $phonenum))
+						{
+							$phonenumErr = "Please enter a phone number.";
+						}
+					}
+					
+					if ($_POST["product"] == "none")
+					{
+						$stateErr = "Please select a product.";
+					}
+					else
+					{
+						$product = test_input($_POST["product"]);
+					}
+					
+					if (isset($_POST["comment"]))
+					{
+						$comment = test_input($_POST["comment"]);
+					}
+				}
+				
+				function test_input($data)
+				{
+					$data = trim($data);
+					$data = stripslashes($data);
+					$data = htmlspecialchars($data);
+					return $data;
+				}
+			?>
+			
+			<form id="processForm" method="post" action="confirm.php">
+				<input type="hidden" name="fname" value="<?php echo $fname; ?>">
+				<input type="hidden" name="lname" value="<?php echo $lname; ?>">
+				<input type="hidden" name="email" value="<?php echo $email; ?>">
+				<input type="hidden" name="subject" value="<?php echo $subject; ?>">
+				<input type="hidden" name="address" value="<?php echo $address; ?>">
+				<input type="hidden" name="city" value="<?php echo $city; ?>">
+				<input type="hidden" name="state" value="<?php echo $state; ?>">
+				<input type="hidden" name="postcode" value="<?php echo $postcode; ?>">
+				<input type="hidden" name="phonenum" value="<?php echo $phonenum; ?>">
+				<input type="hidden" name="product" value="<?php echo $product; ?>">
+				<input type="hidden" name="comment" value="<?php echo $comment; ?>">
+				
+				<p><strong>Your First Name: </strong><span id="confirm_fname"></span></p>
+				<p><strong>Your Last Name: </strong><span id="confirm_lname"></span></p>
+				<p><strong>Your Email: </strong><span id="confirm_email"></span></p>
+				<p><strong>Subject: </strong><span id="confirm_subject"></span></p>
+				<p><strong>Your Street Address: </strong><span id="confirm_stAdd"></span></p>
+				<p><strong>Your City/Town: </strong><span id="confirm_cityTown"></span></p>
+				<p><strong>Your State: </strong><span id="confirm_state"></span></p>
+				<p><strong>Your Postcode: </strong><span id="confirm_postcode"></span></p>
+				<p><strong>Your Phone Number: </strong><span id="confirm_phoneNum"></span></p>
+				<p><strong>Product Selected: </strong><span id="confirm_product"></span></p>
+				<p><strong>Your Comment: </strong><span id="confirm_comment"></span></p>
+				
+				<input type="button" value="Cancel" onclick="cancelEnquiry()"/>
+				<input type="submit" value="Confirm Submit"/>
+			</form>
+		</article>
+		
+		<?php include_once("page_footer.php");?>
+	</body>
+</html>

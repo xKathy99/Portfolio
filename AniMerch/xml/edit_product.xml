@@ -1,0 +1,182 @@
+<?php
+	// Initialize the session
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect to login page
+	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+	{
+		header("location: login.php");
+		exit;
+	}
+	
+	// Include config file
+	require_once "settings.php";
+ 
+	$conn = @mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	
+	$product_id = $new_description = $new_status = $new_price = "";
+	$id_err = $des_err = $status_err = $price_err = "";
+	
+	
+	// Processing form data when form is submitted
+	if($_SERVER["REQUEST_METHOD"] == "POST")
+	{
+		if ($_POST["product_id"] == "none")
+		{
+			$id_err = "Please choose a product.";
+		}
+		else
+		{
+			$product_id = $_POST["product_id"];
+		}
+ 
+		if(empty(trim($_POST["new_desc"])))
+		{
+			$des_err = "Please enter new description.";     
+		} 
+		else
+		{
+			$new_description = trim($_POST["new_desc"]);
+		}
+    
+		if (empty(trim($_POST["new_status"])))
+		{
+			$status_err = "Please enter new status.";
+		} 
+		else
+		{
+			$new_status = trim($_POST["new_status"]);
+		}
+        
+		if (empty(trim($_POST["new_price"])))
+		{
+			$price_err = "Please enter new price.";
+		} 
+		else
+		{
+			$new_price = trim($_POST["new_price"]);
+		}
+		
+		// Check input errors before updating the database
+		if(empty($id_err) && empty($des_err) && empty($status_err) && empty($price_err))
+		{
+			// Prepare an update statement
+			$query = "UPDATE productTable SET description = ?, status = ?, price = ? WHERE id = ?";
+        
+			if($stmt = mysqli_prepare($conn, $query))
+			{
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt, "ssss", $param_desc, $param_status, $param_price, $param_id);
+            
+				// Set parameters
+				$param_desc = $new_description;
+				$param_status = $new_status;
+				$param_price = $new_price;
+				$param_id = $product_id;
+            
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt))
+				{
+					// Password changed successfully. Redirect back to view user page.
+					header("location: view_products.php");
+				} 
+				else
+				{
+					echo "Oops! Something went wrong. Please try again later.";
+				}
+
+				// Close statement
+				mysqli_stmt_close($stmt);
+			}
+		}
+    
+		// Close connection
+		mysqli_close($conn);
+	}
+?>
+
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/CSS" href="styles/style.css"/>
+		<meta name="author" content="Jake Chieng"/>
+		<meta name="description" content="Edit Product"/>
+		<meta name="keywords" content="Product Management, Edit"/>
+		<script src="script/script.js"></script>
+		<script src="script/enhancement.js"></script>
+		<title>Product Management - Edit</title>
+	</head>
+	
+	<body class="manageBody">
+		<?php include_once "management_header_nav.php"; ?> 
+		<article class="manageContainer">
+			<h1>Edit Product</h1>
+			<!--For owner only, can delete other account by filling the going to delete username and password-->
+			<form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+				
+				<div class="formElement">
+					<label for="product_id">PRODUCT</label>
+					<select name="product_id" id="product_id" onfocus="selectFocus(this)">
+						<option value="none">Choose to Edit</option>
+						<?php
+							require_once "settings.php";
+				
+							// Create connection
+							$conn = @mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+						
+							if ($conn)
+							{
+								$query = "SELECT id, productname FROM productTable";
+								$result = mysqli_query($conn, $query);
+							
+								if ($result && $result->num_rows > 0)
+								{
+									while ($row = $result->fetch_assoc())
+									{
+										echo "<option value='" . $row["id"] . "'>" .
+										$row["productname"] . "</option>";
+									}
+								}
+								else
+								{
+									echo "0 results";
+								}	
+								mysqli_close($conn);
+							}
+							else
+							{
+								echo "Unable to connect to the database.";
+							}
+						?>
+					</select>
+					<span><?php echo $id_err; ?></soan>
+				</div>
+				
+				<div class="formElement formSide">
+					<label for="new_status">NEW STATUS</label>
+					<input type="text" id="new_status" name="new_status" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?php echo $status_err; ?></span>
+				</div>
+				
+				<div class="formElement formSide formRight">
+					<label for="new_price">NEW PRICE</label>
+					<input type="text" id="new_price" name="new_price" onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+					<span><?php echo $price_err; ?></span>
+				</div>
+				
+				<div class="formElement">
+					<label for="new_desc">NEW DESCRIPTION</label>
+					<textarea id="new_desc" name="new_desc"></textarea>
+					<span><?php echo $des_err; ?></span>
+				</div>
+				
+				<input type="reset" value="Reset"/>
+				<input type="submit" value="Edit Product"/>
+			</form>
+		</article>
+		
+		<?php include_once "management_footer.php"?>
+	</body>
+</html>
