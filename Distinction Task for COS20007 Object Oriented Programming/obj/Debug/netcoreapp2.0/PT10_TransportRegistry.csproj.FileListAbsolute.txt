@@ -1,0 +1,15 @@
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.csprojAssemblyReference.cache
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.AssemblyInfoInputs.cache
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.AssemblyInfo.cs
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.csproj.CoreCompileInputs.cache
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.dll
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.pdb
+c:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\PT10_TransportRegistry.deps.json
+c:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\PT10_TransportRegistry.runtimeconfig.json
+c:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\PT10_TransportRegistry.runtimeconfig.dev.json
+c:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\PT10_TransportRegistry.dll
+c:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\PT10_TransportRegistry.pdb
+c:\msys64\home\User\PT10_TransportRegistry\obj\Debug\netcoreapp2.0\PT10_TransportRegistry.genruntimeconfig.cache
+C:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\NUnit3.TestAdapter.dll
+C:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\nunit.engine.netstandard.dll
+C:\msys64\home\User\PT10_TransportRegistry\bin\Debug\netcoreapp2.0\Mono.Cecil.dll
