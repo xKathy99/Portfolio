@@ -25,9 +25,9 @@
 ===========================
 
 
-### Natural Language Processing
-- Classification of Twitter Tweets
-
+### AI Tasks
+- Classification of Twitter Tweets (Natural Language Processing)
+- Exploration of Search Strategies (Depth-first, Breadth-first, A* Search) for Some Given Problems
 
 ===========================
 
