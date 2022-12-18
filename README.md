@@ -20,3 +20,11 @@ Product and Order Management System
 
 Classification of Twitter Tweets
 
+
+
+===========================
+
+
+### Database Design 
+
+Design of Database as Based on Real-Life Application
