@@ -1,3 +1,4 @@
+Description:
 This project carries out the recognition of staircase, and will be identify if it is ascending, descending or there are no stairs.
 It will take in an image input and generate the result of recognition as an output.
 
